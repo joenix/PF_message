@@ -22,8 +22,7 @@ $.tab({
 // Get Catlog Datebase
 $.ajax({
 	type: 'GET',
-	url: '/catelog',
-	data: 'mode=SELECT&type=all',
+	url: '/msg',
 	/*
 	data: {
 		mode: 'SELECT',
@@ -31,6 +30,7 @@ $.ajax({
 	},
 	*/
 	success: function( page ){
+
 		$('.catlog-all').html( page );
 
 		var grid = $('.cat-grid');
@@ -52,8 +52,8 @@ $.ajax({
 
 			$.ajax({
 				type: 'post',
-				data: 'audit=' + [1, 0][data.audit] + '&id=' + data.id,
-				url: '/catelog',
+				data: 'mode=update&audit=' + [1, 0][data.audit] + '&id=' + data.id,
+				url: '/msg',
 				success: function( result ){
 					Number(data.audit) ?
 						( it.addClass('button-primary').text('上架').attr('data-audit', 0) ):

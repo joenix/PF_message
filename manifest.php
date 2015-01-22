@@ -31,4 +31,4 @@ define( 'root', $u -> get('ROOT') );
 require_once('lib/class/init.php');
 
 // No Error Report
-error_reporting(0);
+// error_reporting(0);

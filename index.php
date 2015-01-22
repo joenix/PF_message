@@ -76,6 +76,16 @@ foreach( $pages as $page ){
 $u -> route('GET /msg', function( $u ){
 
 	$params = $u -> get('GET');
+
+	$table = 'message';
+
+	// $result = SQL::select( $table );
+	$result = SQL::query('SELECT * FROM message');
+
+	$u -> set( 'data', $result );
+
+	echo Template::instance() -> render('request/msg.html');
+
 });
 
 $u -> route('POST /msg', function( $u ){
@@ -85,16 +95,25 @@ $u -> route('POST /msg', function( $u ){
 
 	$table = 'message';
 
-      $title = REQ::option($params, 'title');
-      $author = REQ::option($params, 'author');
-      $description = REQ::option($params, 'description');
-
 	$result = false;
 
 	switch( $mode ){
 		// 插入数据
 		case 'insert':
+
+			$title = REQ::option($params, 'title');
+			$author = REQ::option($params, 'author');
+			$description = REQ::option($params, 'description');
+
 			$result = SQL::insert( $table, array('title'=>$title, 'author'=>$author, 'description'=>$description) );
+			break;
+		// 更新上/下架
+		case 'update':
+
+			$id = REQ::option($params, 'id');
+			$audit = REQ::option($params, 'audit');
+
+			$result = SQL::update( $table, array('id'=>$id), array('audit'=>array(1,0)[$audit]) );
 			break;
 	}
 

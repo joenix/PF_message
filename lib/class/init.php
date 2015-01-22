@@ -59,18 +59,18 @@ class SQL{
 		return empty( $table ) ? $db : new DB\SQL\Mapper( $db, $table );
 	}
 
-	static function query( $query, $options ){
+	static function query( $query, $options = array() ){
 		$db = self::init();
-		return $db->exec( $query, empty( $options ) ? array() : $options );
+		return $db->exec( $query, $options );
 	}
 
-	static function select( $table, $options, $condition ){
+	static function select( $table, $options = array() ){
 		$db = self::init( $table );
-		return $db -> load( $options, $condition );
+		return $db -> load( $options );
 		// return $db->exec( 'SELECT '.$field.' FROM `'.$table.'`'.( empty($condition) ? '' : ' WHERE '.$condition ) );
 	}
 
-	static function insert( $table, $options ){
+	static function insert( $table, $options = array() ){
 
 		$db = self::init( $table );
 
@@ -83,7 +83,7 @@ class SQL{
 
 	static function update( $table, $options, $condition ){
 		$db = self::init( $table );
-		return $db -> update( $condition, $options );
+		return $db -> update( $options, $condition );
 	}
 }
 
