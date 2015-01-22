@@ -1,0 +1,270 @@
+@import "../../library/stylesheet/import/animate.less";
+@import "../../library/stylesheet/import/buttons.less";
+@import "../../library/markdown-css/markdown.less";
+@import "../../library/swiper/idangerous.swiper.css";
+@import "../../library/ueditor/themes/default/css/ueditor.min.css";
+@import "../../library/grid/css/ui.jqgrid.css";
+
+html, body{
+	height: 100%;
+}
+body{
+	background: @white;
+}
+
+.container{
+	max-width: 960px;
+	.m-center;
+}
+
+header{
+
+	.clearfix;
+
+	border-bottom: 1px solid #121212;
+	background: #242424;
+
+	.logo, nav{
+		height: 40px;
+	}
+
+	.logo{
+		.left;
+		.text-center;
+		width: 160px;
+		padding: 5px;
+
+		img, bdo{
+			.v-middle;
+		}
+
+		img{
+			height: 100%;
+		}
+
+		bdo{
+			.relative;
+			top: -1px;
+			padding: 0 @size / 2;
+			color: @darkorange;
+			font-size: @size * 1.15;
+		}
+	}
+
+	nav{
+		.left;
+		.relative;
+
+		.nav-normal{
+			color: @silver;
+
+			&:after{
+				width: 0;
+				left: 50%;
+			}
+		}
+		.nav-active{
+			color: @white;
+
+			&:after{
+				width: 100%;
+				left: 0;
+			}
+		}
+
+		&:before, &:after{
+			width: 1px; height: 100%;
+			top: 0;
+			.absolute;
+			content: ' ';
+		}
+		&:before{
+			left: -1px;
+			background: #161616;
+		}
+		&:after{
+			left: 0;
+			background: #323232;
+		}
+		ul{
+			.clearfix;
+
+			&:hover, &:active{
+				a{
+					&.active{
+						.nav-normal;
+					}
+				}
+			}
+
+			li{
+				.left;
+
+				a{
+					.block;
+					.relative;
+					.nav-normal;
+					line-height: 40px;
+					padding: 0 @size;
+					color: @silver;
+
+					&:after{
+						.absolute;
+						height: 5px;
+						bottom: -1px;
+						content: ' ';
+						background: @darkorange;
+						transition: all @fast;
+					}
+
+					&:hover, &:active{
+						.nav-active;
+					}
+					&.active{
+						.nav-active;
+
+						&:hover, &:active{
+							.nav-active;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+footer{
+
+}
+
+aside, section{
+	.fixed;
+	top: 41px; bottom: 0;
+}
+aside{
+	width: 160px;
+	left: 0;
+
+	color: @silver;
+	border-right: 1px solid #121212;
+	background: #363636;
+
+	.aside-normal{
+
+	}
+	.aside-active{
+		color: @white;
+		background: @darkorange;
+	}
+
+	ul{
+		&:hover, &:active{
+			li{
+				&.active{
+					color: @silver;
+					background: #363636;
+				}
+			}
+		}
+
+		li{
+			.hand;
+			padding: @size / 3 @size;
+			transition: all @fast;
+
+			&:hover, &:active{
+				.aside-active;
+			}
+			&.active{
+				.aside-active;
+
+				&:hover, &:active{
+					.aside-active;
+				}
+			}
+		}
+	}
+}
+
+section{
+	.scroll-y;
+
+	left: 160px; right: 0;
+
+	&>div{
+		width: 100%; height: 100%;
+	}
+
+	.form{
+		.relative;
+		padding: @size;
+
+		&>button{
+			.absolute;
+			top: @size / 2; right: @size;
+			border-radius: @radius;
+		}
+
+		li{
+			.clearfix;
+
+			label{
+				.left;
+				width: @size * 4;
+			}
+
+			&>div{
+				margin-left: @size * 4;
+
+				&>input{
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.cat-grid{
+		padding: @size;
+
+		table{
+			width: 100%;
+
+			tr{
+				&:nth-of-type(even){
+					background: @ghostwhite;
+				}
+			}
+
+			th{
+				line-height: @size * 2.6;
+				color: @ghostwhite;
+				background: #363636;
+
+				border-left: 1px solid #242424;
+
+				&:first-child{
+					border-left: none;
+					border-radius: @radius 0 0 0;
+				}
+				&:last-child{
+					border-radius: 0 @radius 0 0;
+				}
+			}
+			td{
+				line-height: @size * 2.4;
+				button{
+					.relative;
+					top: 4px;
+
+					padding-left: @size;
+					padding-right: @size;
+					border-radius: @radius;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 640px) {
+
+}
