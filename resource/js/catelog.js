@@ -41,7 +41,7 @@ $.ajax({
 
 				var audit = Number(data.audit), id = Number(data.id);
 
-				$(o).append('<button type="button" data-id="' + id + '" data-audit="' + audit + '" class="button button-raised button-raised button-tiny ' + (audit ? '' : 'button-primary') + '">' + (audit ? '下' : '上') + '架</button>');
+				$(o).prepend('<button type="button" data-id="' + id + '" data-audit="' + audit + '" class="button button-raised button-tiny ' + (audit ? '' : 'button-primary') + '">' + (audit ? '下' : '上') + '架</button>');
 
 			}( $.dataget( o ) );
 		});

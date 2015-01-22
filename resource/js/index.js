@@ -66,17 +66,16 @@ $.tab({
 			*/
 			success: function( result ){
 
-				if( $.result( result ) ){
-					alert('创建成功！');
-					return;
+				alert('创建成功！');
+				return;
 
-					try{
-						_.reload();
-					}
-					catch(e){
-						_.location.href = _.location.href;
-					}
+				try{
+					_.reload();
 				}
+				catch(e){
+					_.location.href = _.location.href;
+				}
+				
 			}
 		});
 	});

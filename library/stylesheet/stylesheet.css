@@ -6708,7 +6708,9 @@ section .cat-grid table th:last-child {
 section .cat-grid table td {
   line-height: 2.4rem;
 }
-section .cat-grid table td button {
+section .cat-grid table td button,
+section .cat-grid table td a.button {
+  vertical-align: top;
   position: relative;
   top: 4px;
   padding-left: 1rem;

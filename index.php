@@ -77,9 +77,20 @@ $u -> route('GET /msg', function( $u ){
 
 	$params = $u -> get('GET');
 
+	$id = REQ::option($params, 'id');
+
 	$table = 'message';
 
-	// $result = SQL::select( $table );
+	if( $id ){
+		$result = SQL::query('SELECT * FROM message WHERE id = '.$id);
+
+		$u -> set( 'data', $result[0] );
+
+		echo Template::instance() -> render('request/msg_view.html');
+
+		exit();
+	}
+
 	$result = SQL::query('SELECT * FROM message');
 
 	$u -> set( 'data', $result );
@@ -113,7 +124,7 @@ $u -> route('POST /msg', function( $u ){
 			$id = REQ::option($params, 'id');
 			$audit = REQ::option($params, 'audit');
 
-			$result = SQL::update( $table, array('id'=>$id), array('audit'=>array(1,0)[$audit]) );
+			$result = SQL::query('UPDATE '.$table.' SET audit = '.$audit.' WHERE id = '.$id);
 			break;
 	}
 

@@ -66,24 +66,22 @@ class SQL{
 
 	static function select( $table, $options = array() ){
 		$db = self::init( $table );
+
 		return $db -> load( $options );
-		// return $db->exec( 'SELECT '.$field.' FROM `'.$table.'`'.( empty($condition) ? '' : ' WHERE '.$condition ) );
 	}
 
 	static function insert( $table, $options = array() ){
-
 		$db = self::init( $table );
 
 		foreach( $options as $index => $value ){
 			$db -> $index = $value;
 		}
-
 		return $db -> save();
 	}
 
 	static function update( $table, $options, $condition ){
 		$db = self::init( $table );
-		return $db -> update( $options, $condition );
+		return $db -> update();
 	}
 }
 
@@ -93,7 +91,7 @@ class REQ{
 	}
 
 	static function option( $options, $property, $default = '' ){
-		return ( empty( $options[ $property ] ) && $options[ $property ] != 0 ) ? $default : $options[ $property ];
+		return isset( $options[ $property ] ) ? $options[ $property ] : $default;
 	}
 
 	static function request( $result, $msg = false ){

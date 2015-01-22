@@ -22,7 +22,9 @@
                               <td align="center"><?php echo $item['author']; ?></td>
                               <td align="center"><?php echo $item['audit']; ?></td>
                               <td><?php echo $item['remark']; ?></td>
-                              <td data-id="<?php echo $item['id']; ?>" data-audit="<?php echo $item['audit']; ?>" align="center"></td>
+                              <td data-id="<?php echo $item['id']; ?>" data-audit="<?php echo $item['audit']; ?>" align="center">
+                                    <a class="button button-raised button-tiny button-highlight" href="<?=host?>/msg?id=<?php echo $item['id']; ?>" target="_blank">查看</a>
+                              </td>
                         </tr>
                   <?php endforeach; ?>
             </tbody>

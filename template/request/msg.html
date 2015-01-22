@@ -22,7 +22,9 @@
                               <td align="center">{{ @item.author }}</td>
                               <td align="center">{{ @item.audit }}</td>
                               <td>{{ @item.remark }}</td>
-                              <td data-id="{{ @item.id }}" data-audit="{{ @item.audit }}" align="center"></td>
+                              <td data-id="{{ @item.id }}" data-audit="{{ @item.audit }}" align="center">
+                                    <a class="button button-raised button-tiny button-highlight" href="<?=host?>/msg?id={{ @item.id }}" target="_blank">查看</a>
+                              </td>
                         </tr>
                   </repeat>
             </tbody>
