@@ -30,7 +30,12 @@ $.tab({
 	function( editor ){
 		// Callback Run In Ready
 		$.editor = editor, editor.ready(function(){
-			editor.setHeight( $.dom.window.height() - 208 );
+
+			$.dom.window
+				.on('resize', function(){
+					editor.setHeight( $.dom.window.height() - 208 );
+				})
+				.trigger('resize');
 		});
 	}
 );
@@ -38,27 +43,19 @@ $.tab({
 // Button
 (function( form, button ){
 	button.on('click', function(){
-		var options = function(text, content){
-			/*
-			return {
-				title: text[0],
-				author: text[1] || '',
-				content: content
-			}
-			*/
-			return 'title=' + text[0] + '&author=' + (text[1] || '') + '&content=' + content;
-		}( form.find('input[name=title]').val().split('/'), $.editor.getContent() );
+		var
+			text = form.find('input[name=title]').val().split('/'),
+			description = $.editor.getContent(),
+			options = 'mode=insert&title=' + text[0] + '&author=' + (text[1] || '') + '&description=' + description;
 
-		/*
-		if( !options.title.length || !options.content.length ){
+		if( !text[0].length || !content.length ){
 			alert('请先输入标题和内容');
 			return;
 		}
-		*/
 
 		$.ajax({
 			type: 'POST',
-			url: '/catelog',
+			url: '/msg',
 			dataType: 'json',
 			data: options,
 			/*
@@ -68,7 +65,8 @@ $.tab({
 			},
 			*/
 			success: function( result ){
-				if( result == 1 ){
+
+				if( $.result( result ) ){
 					alert('创建成功！');
 					return;
 

@@ -73,7 +73,33 @@ foreach( $pages as $page ){
 
 
 // 业务哟
-$u -> route('GET /');
+$u -> route('GET /msg', function( $u ){
+
+	$params = $u -> get('GET');
+});
+
+$u -> route('POST /msg', function( $u ){
+
+      $params = $u -> get('POST');
+	$mode = $params['mode'];
+
+	$table = 'message';
+
+      $title = REQ::option($params, 'title');
+      $author = REQ::option($params, 'author');
+      $description = REQ::option($params, 'description');
+
+	$result = false;
+
+	switch( $mode ){
+		// 插入数据
+		case 'insert':
+			$result = SQL::insert( $table, array('title'=>$title, 'author'=>$author, 'description'=>$description) );
+			break;
+	}
+
+	echo REQ::request( $result );
+});
 
 
 $u -> run();

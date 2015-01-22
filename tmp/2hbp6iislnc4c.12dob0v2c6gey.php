@@ -21,7 +21,7 @@
 	</ul>
 </aside>
 <section>
-	
+
 	<!-- Message Mixed -->
 	<div class="msg-mixed">
 		<div class="form" action="/factory.html" method="post">
@@ -50,13 +50,13 @@
 		The Picture Message !!
 	</div>
 	-->
-	
+
 	<!-- Message Audio
 	<div class="msg-audio">
 		The Audio Message !!
 	</div>
 	-->
-	
+
 	<!-- Message Video
 	<div class="msg-video">
 		The Video Message !!

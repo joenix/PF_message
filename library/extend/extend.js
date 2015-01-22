@@ -690,6 +690,11 @@ $.extend({
 			}
 
 		});
+	},
+
+	// 结果
+	result: function( result ){
+		return result = result || {}, result.error ? ( alert( result.msg || '错误' ), false ) : true;
 	}
 
 	// Plugin End

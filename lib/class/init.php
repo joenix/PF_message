@@ -49,7 +49,7 @@ class SQL{
 		}
 	}
 
-	static function init( $table = NULL ){
+	static function init( $table = false ){
 		$manifest = 'mysql:host='.DB_host.';port='.DB_port.';dbname='.DB_name;
 		$account = DB_account;
 		$password = DB_password;
@@ -70,6 +70,17 @@ class SQL{
 		// return $db->exec( 'SELECT '.$field.' FROM `'.$table.'`'.( empty($condition) ? '' : ' WHERE '.$condition ) );
 	}
 
+	static function insert( $table, $options ){
+
+		$db = self::init( $table );
+
+		foreach( $options as $index => $value ){
+			$db -> $index = $value;
+		}
+
+		return $db -> save();
+	}
+
 	static function update( $table, $options, $condition ){
 		$db = self::init( $table );
 		return $db -> update( $condition, $options );
@@ -83,5 +94,14 @@ class REQ{
 
 	static function option( $options, $property, $default = '' ){
 		return ( empty( $options[ $property ] ) && $options[ $property ] != 0 ) ? $default : $options[ $property ];
+	}
+
+	static function request( $result, $msg = false ){
+		$return = array();
+
+		$return['error'] = empty( $result ) ? true : false;
+		$return['msg'] = $msg;
+
+		return json_encode( $return );
 	}
 }
