@@ -54,7 +54,7 @@ $.tab({
 			description = $.editor.getContent(),
 			options = 'mode=' + ( id ? 'edit' : 'insert' ) + '&' + ( id ? ('id=' + id + '&') : '' ) + 'title=' + $.esc(text[0]) + '&author=' + $.esc(text[1] || '') + '&description=' + $.esc(description);
 
-		if( !text[0].length || !content.length ){
+		if( !text[0].length || !description.length ){
 			alert('请先输入标题和内容');
 			return;
 		}
