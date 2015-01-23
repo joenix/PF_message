@@ -5,7 +5,7 @@
 	var index = 0;
 
 	switch( $.path[0] ){
-		case 'catelog':
+		case 'msg':
 			index = 1;
 			break;
 	}

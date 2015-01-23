@@ -1405,6 +1405,11 @@ button {
 .normal {
   font-weight: normal;
 }
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .z-max {
   z-index: 2147483584;
 }
@@ -6707,6 +6712,18 @@ section .cat-grid table th:last-child {
 }
 section .cat-grid table td {
   line-height: 2.4rem;
+}
+section .cat-grid table td div {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-height: 3rem;
+}
+section .cat-grid table td div.ellipsis-title {
+  max-width: 12rem;
+}
+section .cat-grid table td div.ellipsis-description {
+  max-width: 24rem;
 }
 section .cat-grid table td button,
 section .cat-grid table td a.button {

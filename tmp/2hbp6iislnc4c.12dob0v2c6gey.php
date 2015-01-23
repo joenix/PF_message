@@ -25,19 +25,19 @@
 	<!-- Message Mixed -->
 	<div class="msg-mixed">
 		<div class="form" action="/factory.html" method="post">
-			<button type="button" class="button button-raised button-primary button-raised button-tiny">保存</button>
+			<button type="button" class="button button-raised button-primary button-raised button-tiny" data-id="<?php echo $id; ?>">保存</button>
 			<ol>
 				<li>
 					<label>标题：</label>
 					<div>
-						<input type="text" name="title" placeholder="标题/作者" />
+						<input type="text" name="title" placeholder="标题/作者" value="<?php echo $title; ?>" />
 					</div>
 				</li>
 				<li>
 					<label>正文：</label>
 					<div>
 <script id="editor" name="content" type="text/plain">
-请输入内容
+<?php echo $description; ?>
 </script>
 					</div>
 				</li>

@@ -5,7 +5,7 @@
 	var index = 0;
 
 	switch( $.path[0] ){
-		case 'catelog':
+		case 'msg':
 			index = 1;
 			break;
 	}
@@ -43,10 +43,16 @@ $.tab({
 // Button
 (function( form, button ){
 	button.on('click', function(){
+
+		$.esc = function( str ){
+			return str.replace(/\'/g, '"');
+		}
+
 		var
+			id = $.dataget( button ).id,
 			text = form.find('input[name=title]').val().split('/'),
 			description = $.editor.getContent(),
-			options = 'mode=insert&title=' + text[0] + '&author=' + (text[1] || '') + '&description=' + description;
+			options = 'mode=' + ( id ? 'edit' : 'insert' ) + '&' + ( id ? ('id=' + id + '&') : '' ) + 'title=' + $.esc(text[0]) + '&author=' + $.esc(text[1] || '') + '&description=' + $.esc(description);
 
 		if( !text[0].length || !content.length ){
 			alert('请先输入标题和内容');
@@ -66,7 +72,7 @@ $.tab({
 			*/
 			success: function( result ){
 
-				alert('创建成功！');
+				alert('保存成功！');
 				return;
 
 				try{
@@ -75,7 +81,7 @@ $.tab({
 				catch(e){
 					_.location.href = _.location.href;
 				}
-				
+
 			}
 		});
 	});

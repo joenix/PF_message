@@ -81,6 +81,13 @@ class SQL{
 
 	static function update( $table, $options, $condition ){
 		$db = self::init( $table );
+
+		foreach( $options as $index => $value ){
+			$db -> $index = $value;
+		}
+		foreach( $condition as $index => $value ){
+			$db -> $index = $value;
+		}
 		return $db -> update();
 	}
 }
@@ -91,7 +98,7 @@ class REQ{
 	}
 
 	static function option( $options, $property, $default = '' ){
-		return isset( $options[ $property ] ) ? $options[ $property ] : $default;
+		return !isset( $options[ $property ] ) ? $default : $options[ $property ];
 	}
 
 	static function request( $result, $msg = false ){

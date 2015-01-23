@@ -7,7 +7,7 @@ $project = '';
 require_once('manifest.php');
 
 // Page Array
-$pages = array('index', 'catelog');
+$pages = array('index', 'msg');
 
 
 // Web Init
@@ -42,12 +42,32 @@ class Web extends Init {
 
 	// Page Index
 	static function index( $u ){
+
+		$params = $u -> get('GET');
+		$id = REQ::option($params, 'id');
+
+		if( $id ){
+			$one = SQL::query('SELECT * FROM message WHERE id = '.$id)[0];
+
+			$title = $one['title'];
+			$description = $one['description'];
+		}
+		else{
+			$id = '';
+			$title = null;
+			$description = null;
+		}
+
+		$u -> set( 'id', $id );
+		$u -> set( 'title', $title );
+		$u -> set( 'description', $description );
+
 		self::render( $u, 'index' );
 	}
 
 	// Page Demo
-	static function catelog( $u ){
-		self::render( $u, 'catelog' );
+	static function msg( $u ){
+		self::render( $u, 'msg' );
 	}
 
 	// Page Error
@@ -76,26 +96,52 @@ foreach( $pages as $page ){
 $u -> route('GET /msg', function( $u ){
 
 	$params = $u -> get('GET');
+	$mode = REQ::option($params, 'mode');
 
 	$id = REQ::option($params, 'id');
 
 	$table = 'message';
 
-	if( $id ){
-		$result = SQL::query('SELECT * FROM message WHERE id = '.$id);
+	switch( $mode ){
 
-		$u -> set( 'data', $result[0] );
+		// 单页
+		case 'read':
 
-		echo Template::instance() -> render('request/msg_view.html');
+			if( $id ){
 
-		exit();
+				$result = SQL::query('SELECT * FROM message WHERE id = '.$id);
+
+				$u -> set( 'data', $result[0] );
+
+				echo Template::instance() -> render('request/msg_view.html');
+
+			}
+
+			break;
+
+		case 'edit':
+
+			if( $id ){
+
+				$u -> set( 'id', $id );
+
+				Web::index( $u );
+
+			}
+
+			break;
+
+		// 编辑
+		default:
+
+			$result = SQL::query('SELECT * FROM message ORDER BY id desc');
+
+			$u -> set( 'data', $result );
+
+			echo Template::instance() -> render('request/msg.html');
+
+			break;
 	}
-
-	$result = SQL::query('SELECT * FROM message');
-
-	$u -> set( 'data', $result );
-
-	echo Template::instance() -> render('request/msg.html');
 
 });
 
@@ -109,6 +155,7 @@ $u -> route('POST /msg', function( $u ){
 	$result = false;
 
 	switch( $mode ){
+
 		// 插入数据
 		case 'insert':
 
@@ -118,6 +165,7 @@ $u -> route('POST /msg', function( $u ){
 
 			$result = SQL::insert( $table, array('title'=>$title, 'author'=>$author, 'description'=>$description) );
 			break;
+
 		// 更新上/下架
 		case 'update':
 
@@ -125,6 +173,20 @@ $u -> route('POST /msg', function( $u ){
 			$audit = REQ::option($params, 'audit');
 
 			$result = SQL::query('UPDATE '.$table.' SET audit = '.$audit.' WHERE id = '.$id);
+			break;
+
+		// 编辑
+		case 'edit':
+
+			$id = REQ::option($params, 'id');
+			$title = REQ::option($params, 'title');
+			$author = REQ::option($params, 'author', '');
+			$description = REQ::option($params, 'description');
+
+			// $result = SQL::update( $table, array('title'=>$title, 'author'=>$author, 'description'=>$description), array('id'=>$id) );
+			// console("UPDATE ".$table." SET `title` = '".$title."', `author` = '".$author."', `description` = '".$description."' WHERE id = ".$id);
+			$result = SQL::query("UPDATE ".$table." SET `title` = '".$title."', `author` = '".$author."', `description` = '".$description."' WHERE id = ".$id);
+
 			break;
 	}
 

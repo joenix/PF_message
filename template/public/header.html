@@ -4,7 +4,7 @@
 	<nav>
 		<ul>
 			<li><a href="<?=host?>/">消息生成</a></li>
-			<li><a href="<?=host?>/catelog.html">消息列表</a></li>
+			<li><a href="<?=host?>/msg.html">消息列表</a></li>
 		</ul>
 	</nav>
 </header>

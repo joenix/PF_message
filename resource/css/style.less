@@ -252,6 +252,19 @@ section{
 			}
 			td{
 				line-height: @size * 2.4;
+
+				div{
+					.ellipsis;
+					max-height: @size * 3;
+
+					&.ellipsis-title{
+						max-width: @size * 12;
+					}
+					&.ellipsis-description{
+						max-width: @size * 24;
+					}
+				}
+
 				button, a.button{
 					.v-top;
 					.relative;

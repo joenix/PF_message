@@ -321,14 +321,19 @@ $.extend({
 	escapeHTML: function( html ){
 		return html
 				.replace(/</g, '&lt;')
-				.replace(/>/g, '&gt;');
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '%22')
+				.replace(/'/g, '%27')
+				.replace(/\'/g, '"');
 	},
 
 	// 解码HTML
 	unescapeHTML: function( html ){
 		return html
 				.replace(/&lt;/g, '<')
-				.replace(/&gt;/g, '>');
+				.replace(/&gt;/g, '>')
+				.replace(/%22/g, '"')
+				.replace(/%27/g, "'");
 	}
 
 	// Extend End
