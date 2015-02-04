@@ -697,6 +697,39 @@ $.extend({
 		});
 	},
 
+	// Drag & Drop
+	DD: function( options ){
+		options = options || {}
+
+		// Drag对象集
+	  ,	options.targets = $( options.targets || '[data-drag-target]' )
+		// Drop区域集
+	  ,	options.areas   = $( options.areas   || '[data-drag-area]' )
+		// 文件集合
+	  ,	options.files   = []
+		// 阻止浏览器默认行为
+	  ,	options.stopDefault = function( areas, stop ){
+
+			areas.on({
+				dragleave: stop,
+				drop: stop,
+				dragenter: stop,
+				dragover: stop
+			});
+
+		}( options.areas, function(e){ e.preventDefault() } )
+		// Drop 句柄
+	  ,	dropHandle = function(e){
+			options.files = e.dataTransfer.files;
+		}
+	  ,	init = function(){
+
+			options.areas.get(0).addEventListener( 'drop', dropHandle);
+
+		}();
+
+	},
+
 	// 结果
 	result: function( result ){
 		return result = result || {}, result.error ? ( alert( result.msg || '错误' ), false ) : true;

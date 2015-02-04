@@ -12,21 +12,31 @@
 <meta name="robots" content="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" href="<?=host?>/resource/ico/favicon.ico" />
-<link rel="stylesheet" type="text/css" href="<?=host?>/library/stylesheet/stylesheet.css">
 </head>
 <body>
 <noscript>您需要开启浏览器 JavaScript 功能来帮助您访问 <br/>请设置浏览器开启 JavaScript 功能，然后重试 ~</noscript>
 
 <style type="text/css">
+
+html, body{
+      margin: 0; padding: 0;
+}
+
+html{
+      font: 13px/1.4 Helvetica, Tahoma, Arial, sans-serif;
+}
+
 body{
       background: #f8f8f8;
 }
+h1, h2, h3, h4, h5, h6{
+      line-height: .8;
+}
 h1{
-      line-height: 2.8rem;
-      font-size: 2.2rem;
+      font-size: 20px;
 }
 h2{
-      font-size: 1.2rem;
+      font-size: 12px;
       color: #999;
 }
 small{
@@ -34,7 +44,7 @@ small{
 }
 section{
       position: static;
-      padding: 1rem 0;
+      padding: .5rem 0;
       font-size: 1.2rem;
       color: #484848;
 }
@@ -43,7 +53,7 @@ img{
 }
 
 .wrap{
-      padding: 1rem;
+      padding: .75rem;
 }
 </style>
 
@@ -55,7 +65,11 @@ img{
 
 <script type="text/javascript">
 ;(function( section ){
-      section.innerHTML = section.innerHTML.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+      section.innerHTML = section.innerHTML
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&nbsp;/ig, ' ')
+            .replace(/&amp;/ig, '&');
 })
 (
       document.querySelector('section')

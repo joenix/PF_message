@@ -19,6 +19,12 @@ $.tab({
 	menus: '[data-menu]'
 });
 
+// Drag Upload: Test
+$.DD({
+	areas: '.drag-image'
+});
+
+
 // UMeditor
 (function( options, callback ){
 	callback( UE.getEditor('editor', options) );
@@ -33,7 +39,7 @@ $.tab({
 
 			$.dom.window
 				.on('resize', function(){
-					editor.setHeight( $.dom.window.height() - 208 );
+					editor.setHeight( $.dom.window.height() - 392 );
 				})
 				.trigger('resize');
 		});
@@ -45,7 +51,7 @@ $.tab({
 	button.on('click', function(){
 
 		$.esc = function( str ){
-			return str.replace(/\'/g, '"');
+			return encodeURIComponent( str.replace(/\'/g, '"') );
 		}
 
 		var

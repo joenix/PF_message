@@ -6487,7 +6487,7 @@ header nav {
 header .logo {
   float: left;
   text-align: center;
-  width: 160px;
+  width: 168px;
   padding: 5px;
 }
 header .logo img,
@@ -6500,7 +6500,7 @@ header .logo img {
 header .logo bdo {
   position: relative;
   top: -1px;
-  padding: 0 0.5rem;
+  padding: 0 0.42553191rem;
   color: #ff8c00;
   font-size: 1.15rem;
 }
@@ -6613,7 +6613,7 @@ section {
   bottom: 0;
 }
 aside {
-  width: 160px;
+  width: 168px;
   left: 0;
   color: #c0c0c0;
   border-right: 1px solid #121212;
@@ -6649,7 +6649,7 @@ aside ul li.active:active {
 }
 section {
   overflow-y: auto;
-  left: 160px;
+  left: 168px;
   right: 0;
 }
 section > div {
@@ -6669,6 +6669,7 @@ section .form > button {
 section .form li {
   display: inline-table;
   display: block;
+  margin-bottom: .5rem;
 }
 section .form li:after {
   visibility: hidden;
@@ -6688,6 +6689,15 @@ section .form li > div {
 section .form li > div > input {
   width: 100%;
 }
+section .form .drag-image {
+  height: 160px;
+  padding: 1rem;
+  border: 1px solid #dcdcdc;
+  border-radius: 0.25rem;
+}
+section .form .drag-image > li {
+  display: inline-block;
+}
 section .cat-grid {
   padding: 1rem;
 }
@@ -6696,6 +6706,10 @@ section .cat-grid table {
 }
 section .cat-grid table tr:nth-of-type(even) {
   background: #f8f8ff;
+}
+section .cat-grid table tr:hover,
+section .cat-grid table tr:active {
+  background: #dcdcdc;
 }
 section .cat-grid table th {
   line-height: 2.6rem;

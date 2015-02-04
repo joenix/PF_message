@@ -41,6 +41,12 @@
 </script>
 					</div>
 				</li>
+				<li>
+					<label>优派云：</label>
+					<div>
+						<ul class="drag-image"></ul>
+					</div>
+				</li>
 			</ol>
 		</div>
 	</div>

@@ -31,7 +31,7 @@ header{
 	.logo{
 		.left;
 		.text-center;
-		width: 160px;
+		width: 168px;
 		padding: 5px;
 
 		img, bdo{
@@ -45,7 +45,7 @@ header{
 		bdo{
 			.relative;
 			top: -1px;
-			padding: 0 @size / 2;
+			padding: 0 @size / 2.35;
 			color: @darkorange;
 			font-size: @size * 1.15;
 		}
@@ -142,7 +142,7 @@ aside, section{
 	top: 41px; bottom: 0;
 }
 aside{
-	width: 160px;
+	width: 168px;
 	left: 0;
 
 	color: @silver;
@@ -189,7 +189,7 @@ aside{
 section{
 	.scroll-y;
 
-	left: 160px; right: 0;
+	left: 168px; right: 0;
 
 	&>div{
 		width: 100%; height: 100%;
@@ -207,6 +207,7 @@ section{
 
 		li{
 			.clearfix;
+			margin-bottom: .5rem;
 
 			label{
 				.left;
@@ -221,6 +222,15 @@ section{
 				}
 			}
 		}
+
+		.drag-image{
+			.list-inline;
+			
+			height: 160px;
+			padding: 1rem;
+			border: 1px solid @gainsboro;
+			border-radius: @radius;
+		}
 	}
 
 	.cat-grid{
@@ -232,6 +242,10 @@ section{
 			tr{
 				&:nth-of-type(even){
 					background: @ghostwhite;
+				}
+
+				&:hover, &:active{
+					background: @gainsboro;
 				}
 			}
 
